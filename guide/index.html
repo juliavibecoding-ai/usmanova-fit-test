@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="Интерактивный онлайн-гайд с готовой AI-системой, промптами и бонусными материалами."
+    >
+    <title>Готовая AI-система — онлайн-гайд</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        --pink: #f65f96;
+        --pink-dark: #e94e87;
+        --ink: #171717;
+        --muted: #6f6f6f;
+        --surface: #f5f5f5;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 85% 10%, rgb(246 95 150 / 16%), transparent 28%),
+          linear-gradient(180deg, #fff 0%, var(--surface) 100%);
+        font-family: "Montserrat", Arial, sans-serif;
+      }
+
+      main {
+        display: grid;
+        min-height: 100svh;
+        padding: 48px 20px;
+        place-items: center;
+      }
+
+      .guide {
+        display: grid;
+        width: min(1040px, 100%);
+        overflow: hidden;
+        grid-template-columns: 1.05fr 0.95fr;
+        border-radius: 36px;
+        background: var(--white);
+        box-shadow: 0 24px 70px rgb(0 0 0 / 9%);
+      }
+
+      .guide__copy {
+        padding: clamp(34px, 5vw, 72px);
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--pink);
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 620px;
+        margin: 0 0 22px;
+        color: var(--ink);
+        font-size: clamp(34px, 5vw, 64px);
+        font-weight: 800;
+        letter-spacing: -0.055em;
+        line-height: 1.02;
+      }
+
+      h1 span {
+        color: var(--pink);
+      }
+
+      .lead {
+        max-width: 590px;
+        margin: 0 0 34px;
+        color: var(--muted);
+        font-size: clamp(17px, 2vw, 22px);
+        line-height: 1.48;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 58px;
+        align-items: center;
+        justify-content: center;
+        padding: 16px 28px;
+        border-radius: 999px;
+        color: var(--white);
+        background: var(--pink);
+        box-shadow: 0 14px 30px rgb(246 95 150 / 24%);
+        font-size: 16px;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .button:hover {
+        background: var(--pink-dark);
+      }
+
+      .button--ghost {
+        color: var(--pink);
+        background: #fff0f6;
+        box-shadow: none;
+      }
+
+      .guide__preview {
+        display: grid;
+        min-height: 540px;
+        padding: 34px;
+        background:
+          linear-gradient(145deg, rgb(246 95 150 / 9%), rgb(255 255 255 / 0%)),
+          #fafafa;
+        place-items: center;
+      }
+
+      .cover {
+        display: grid;
+        width: min(330px, 100%);
+        min-height: 460px;
+        align-content: end;
+        padding: 32px;
+        border-radius: 28px;
+        color: var(--white);
+        background:
+          linear-gradient(180deg, rgb(0 0 0 / 0%), rgb(0 0 0 / 18%)),
+          linear-gradient(135deg, #ff7cae 0%, #f65f96 50%, #ec4f8b 100%);
+        box-shadow: 0 22px 48px rgb(246 95 150 / 24%);
+      }
+
+      .cover p {
+        margin: 0 0 10px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .cover h2 {
+        margin: 0;
+        font-size: 38px;
+        line-height: 1.05;
+      }
+
+      .note {
+        margin: 26px 0 0;
+        color: #8a8a8a;
+        font-size: 14px;
+      }
+
+      @media (max-width: 820px) {
+        main {
+          padding: 20px;
+        }
+
+        .guide {
+          grid-template-columns: 1fr;
+          border-radius: 28px;
+        }
+
+        .guide__preview {
+          min-height: auto;
+          padding: 24px;
+        }
+
+        .cover {
+          min-height: 320px;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="guide" aria-labelledby="guide-title">
+        <div class="guide__copy">
+          <p class="eyebrow">Онлайн-гайд</p>
+          <h1 id="guide-title">Готовая <span>AI-система</span> для работы с промптами</h1>
+          <p class="lead">
+            Интерактивный гайд с набором промптов и бонусных материалов. Можно открыть в браузере,
+            скачать PDF или отправить ссылку без дополнительного доступа.
+          </p>
+          <div class="actions">
+            <a class="button" href="gotovaya-ai-sistema-mobile-guide-v4.pdf" target="_blank" rel="noopener">
+              Открыть гайд
+            </a>
+            <a class="button button--ghost" href="gotovaya-ai-sistema-mobile-guide-v4.pdf" download>
+              Скачать PDF
+            </a>
+          </div>
+          <p class="note">Если PDF открылся в новой вкладке — всё работает корректно.</p>
+        </div>
+        <div class="guide__preview" aria-hidden="true">
+          <div class="cover">
+            <p>PDF guide</p>
+            <h2>Готовая<br>AI-система</h2>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
