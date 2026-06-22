@@ -22,7 +22,7 @@ body {
   min-width: 320px;
   color: var(--ink);
   background: var(--white);
-  font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Comfortaa", Arial, sans-serif;
   line-height: 1.35;
   -webkit-font-smoothing: antialiased;
 }
@@ -170,12 +170,12 @@ input:focus-visible {
 }
 
 .trainer {
-  padding: 62px 0 100px;
+  padding: 56px 0 84px;
   background: var(--surface);
 }
 
 .trainer__inner {
-  width: min(1120px, calc(100% - 40px));
+  width: min(1180px, calc(100% - 44px));
 }
 
 .section-heading {
@@ -186,8 +186,8 @@ input:focus-visible {
 .section-heading h2 {
   margin-bottom: 22px;
   font-size: clamp(28px, 3.1vw, 39px);
-  font-weight: 500;
-  letter-spacing: -0.035em;
+  font-weight: 400;
+  letter-spacing: -0.04em;
   line-height: 1.15;
 }
 
@@ -202,55 +202,62 @@ input:focus-visible {
 }
 
 .trainer-card {
-  padding: 34px 34px 26px;
-  border-radius: 48px;
+  overflow: hidden;
+  padding: 34px 34px 30px;
+  border-radius: 44px;
   background: var(--white);
-  box-shadow: 0 10px 30px rgb(0 0 0 / 4%);
+  box-shadow: 0 22px 70px rgb(0 0 0 / 5%);
 }
 
 .trainer__facts {
   display: grid;
-  margin: 0 0 34px;
+  margin: 0 0 30px;
   padding: 0;
-  gap: 24px;
+  gap: 22px;
   list-style: none;
 }
 
 .trainer__facts li {
   position: relative;
   min-height: 30px;
-  padding-left: 70px;
-  font-size: clamp(22px, 2.35vw, 31px);
-  font-weight: 400;
-  line-height: 1.35;
+  padding-left: 72px;
+  font-size: clamp(22px, 2.25vw, 30px);
+  font-weight: 300;
+  letter-spacing: -0.035em;
+  line-height: 1.48;
 }
 
 .trainer__facts li::before {
   position: absolute;
-  top: 3px;
+  top: 8px;
   left: 0;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 34px;
   content: "";
-  background: linear-gradient(135deg, transparent 26%, var(--pink) 27% 43%, transparent 44% 55%, var(--pink) 56% 72%, transparent 73%);
-  transform: rotate(-8deg);
+  border-radius: 4px;
+  background:
+    linear-gradient(120deg, transparent 0 18%, var(--pink) 19% 42%, transparent 43% 58%, var(--pink) 59% 82%, transparent 83%),
+    linear-gradient(90deg, var(--pink) 0 18%, transparent 18% 82%, var(--pink) 82%);
+  opacity: 0.98;
+  transform: rotate(-45deg);
 }
 
 .gallery {
   position: relative;
-  overflow: hidden;
-  padding-bottom: 30px;
-  border-radius: 36px 36px 0 0;
+  overflow: visible;
+  padding-bottom: 26px;
 }
 
 .gallery__track {
   display: flex;
+  margin-right: -34px;
   gap: 38px;
   overflow-x: auto;
   cursor: grab;
   overscroll-behavior-x: contain;
   scroll-behavior: auto;
   scroll-snap-type: x proximity;
+  touch-action: pan-y;
   user-select: none;
   scrollbar-width: none;
 }
@@ -265,7 +272,7 @@ input:focus-visible {
 
 .gallery__slide {
   flex: 0 0 52.5%;
-  height: 510px;
+  height: clamp(360px, 42vw, 540px);
   margin: 0;
   overflow: hidden;
   border-radius: 34px;
@@ -281,7 +288,7 @@ input:focus-visible {
 }
 
 .gallery__progress {
-  width: 180px;
+  width: 205px;
   height: 10px;
   margin-top: 18px;
   overflow: hidden;
@@ -291,17 +298,18 @@ input:focus-visible {
 
 .gallery__progress span {
   display: block;
-  width: 38%;
+  width: 24%;
   height: 100%;
   border-radius: inherit;
   background: var(--pink);
   transform-origin: left center;
+  transition: transform 80ms linear;
 }
 
 .gallery__hint {
-  margin: 14px 0 0;
+  margin: 20px 0 0;
   color: var(--pink);
-  font-size: 20px;
+  font-size: clamp(22px, 2.25vw, 31px);
   font-weight: 400;
   text-align: center;
 }
@@ -642,13 +650,14 @@ input:focus-visible {
   }
 
   .trainer-card {
-    padding: 20px 16px 24px;
-    border-radius: 32px;
+    padding: 18px 14px 22px;
+    border-radius: 30px;
   }
 
   .trainer__facts li {
-    padding-left: 42px;
-    font-size: 18px;
+    padding-left: 44px;
+    font-size: 17px;
+    line-height: 1.45;
   }
 
   .trainer__facts li::before {
@@ -657,9 +666,18 @@ input:focus-visible {
   }
 
   .gallery__slide {
-    flex-basis: 86%;
-    height: 340px;
+    flex-basis: 84%;
+    height: 330px;
     border-radius: 26px;
+  }
+
+  .gallery__track {
+    margin-right: -14px;
+    gap: 18px;
+  }
+
+  .gallery__progress {
+    width: 150px;
   }
 
   .gallery__hint {

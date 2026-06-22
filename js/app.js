@@ -16,19 +16,19 @@ const isStaticDemoHost = ["github.io", "localhost", "127.0.0.1"].some((host) =>
   window.location.hostname.includes(host),
 );
 
-if (localStorage.getItem("usmanovaCookieAccepted") === "1") {
+if (cookie && localStorage.getItem("usmanovaCookieAccepted") === "1") {
   cookie.hidden = true;
 }
 
-cookieClose.addEventListener("click", () => {
+cookieClose?.addEventListener("click", () => {
   localStorage.setItem("usmanovaCookieAccepted", "1");
-  cookie.hidden = true;
+  if (cookie) cookie.hidden = true;
 });
 
 function updateGalleryProgress() {
   const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
   const progress = maxScroll > 0 ? galleryTrack.scrollLeft / maxScroll : 0;
-  galleryProgress.style.transform = `scaleX(${0.38 + progress * 0.62})`;
+  galleryProgress.style.transform = `translateX(${progress * 316}%)`;
 }
 
 let isDraggingGallery = false;
@@ -40,6 +40,7 @@ window.addEventListener("resize", updateGalleryProgress);
 
 galleryTrack.addEventListener("pointerdown", (event) => {
   isDraggingGallery = true;
+  event.preventDefault();
   galleryStartX = event.clientX;
   galleryStartScroll = galleryTrack.scrollLeft;
   galleryTrack.setPointerCapture(event.pointerId);
