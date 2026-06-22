@@ -996,6 +996,73 @@ input:focus-visible {
   }
 }
 
+@media (max-width: 700px) {
+  .hero,
+  .hero__inner {
+    min-height: auto;
+  }
+
+  .hero__inner {
+    display: block;
+    width: calc(100% - 24px);
+  }
+
+  .hero__copy {
+    padding: 28px 0 42px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    max-width: 360px;
+    margin: 0 auto 22px;
+    font-size: 26px;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__subtitle {
+    margin-bottom: 22px;
+    font-size: 22px;
+    line-height: 1.28;
+  }
+
+  .hero__visual {
+    display: none !important;
+  }
+
+  .hero__mobile-visual {
+    display: block !important;
+    width: min(500px, 104vw);
+    margin: 0 50% 22px;
+    transform: translateX(-50%);
+  }
+
+  .hero__mobile-visual img {
+    display: block;
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero__text {
+    max-width: 350px;
+    margin: 0 auto 26px;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .button--hero {
+    width: 100%;
+    min-width: 0;
+    min-height: 74px;
+    font-size: 17px;
+  }
+
+  .hero__note {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
