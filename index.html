@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=three-screens">
+    <link rel="stylesheet" href="styles.css?v=guarantees">
   </head>
   <body>
     <main>
@@ -88,40 +88,62 @@
         </div>
       </section>
 
-      <section class="lead-screen" id="form" aria-labelledby="lead-title">
-        <div class="section-shell lead-screen__inner">
-          <div class="lead-screen__copy">
-            <p class="eyebrow">Начните сегодня</p>
-            <h2 id="lead-title">Оставьте заявку на программу</h2>
-            <p>
-              Выберите цель, оставьте контакт, и мы свяжемся с вами, чтобы помочь
-              подобрать подходящий старт.
-            </p>
+      <section class="guarantees" aria-labelledby="guarantees-title">
+        <div class="section-shell guarantees__inner">
+          <h2 id="guarantees-title">
+            Программы <span>Кати Усмановой —</span><br>
+            это всегда гарантия
+          </h2>
+
+          <div class="guarantee-card">
+            <article class="guarantee-item">
+              <span class="guarantee-icon">₽</span>
+              <div>
+                <h3>Гарантия лучшей цены</h3>
+                <p>Самая лояльная цена на рынке фитнеса для комплекта тренировок с таким глубоким содержанием программ, направленных на быстрый результат.</p>
+              </div>
+            </article>
+
+            <article class="guarantee-item">
+              <span class="guarantee-icon">★</span>
+              <div>
+                <h3>Гарантия уникальности программ</h3>
+                <p>Все программы тренировок разработаны лично Катей Усмановой и проверены на её опыте.</p>
+              </div>
+            </article>
+
+            <article class="guarantee-item">
+              <span class="guarantee-icon">●</span>
+              <div>
+                <h3>Гарантия результата при соблюдении всех рекомендаций</h3>
+                <p>Задания и рекомендации помогают закреплять результат и мотивируют двигаться дальше.</p>
+              </div>
+            </article>
+
+            <article class="guarantee-item">
+              <span class="guarantee-icon">✓</span>
+              <div>
+                <h3>Гарантия соблюдения сроков обучения</h3>
+                <p>Все программы будут открыты в указанный срок с согласованным доступом.</p>
+              </div>
+            </article>
+
+            <article class="guarantee-item">
+              <span class="guarantee-icon">●</span>
+              <div>
+                <h3>Гарантия юридической чистоты сделки</h3>
+                <p>Оплата проходит через кассу, вы получите чек на свой e-mail.</p>
+              </div>
+            </article>
+
+            <article class="guarantee-item">
+              <span class="guarantee-icon">♀</span>
+              <div>
+                <h3>Гарантия предоставления необходимой информации</h3>
+                <p>Мы предоставим все материалы, необходимые вам для быстрого достижения результата. У вас не останется вопросов по питанию и тренировкам.</p>
+              </div>
+            </article>
           </div>
-          <form class="lead-card" data-lead-form novalidate>
-            <label>
-              <span>Ваше имя</span>
-              <input name="name" autocomplete="name" placeholder="Например, Юлия" required>
-              <small data-error="name"></small>
-            </label>
-            <label>
-              <span>Телефон или Telegram</span>
-              <input name="contact" autocomplete="tel" placeholder="+7 или @username" required>
-              <small data-error="contact"></small>
-            </label>
-            <label>
-              <span>Программа</span>
-              <select name="program" required>
-                <option value="">Выберите программу</option>
-                <option>Стройности</option>
-                <option>Упругая попа 1.0</option>
-                <option>Упругая попа 2.0</option>
-              </select>
-              <small data-error="program"></small>
-            </label>
-            <button class="button" type="submit">Отправить заявку</button>
-            <p class="form-status" role="status" aria-live="polite" data-form-status></p>
-          </form>
         </div>
       </section>
     </main>
@@ -151,6 +173,6 @@
       </form>
     </dialog>
 
-    <script type="module" src="js/app.js?v=three-screens"></script>
+    <script type="module" src="js/app.js?v=guarantees"></script>
   </body>
 </html>
