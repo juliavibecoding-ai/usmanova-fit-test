@@ -2,13 +2,10 @@ import { validateLead } from "./validation.js";
 
 const cookie = document.querySelector("[data-cookie]");
 const cookieClose = document.querySelector("[data-cookie-close]");
-const galleryTrack = document.querySelector("[data-gallery-track]");
-const galleryProgress = document.querySelector("[data-gallery-progress]");
 const modal = document.querySelector("[data-modal]");
 const modalClose = document.querySelector("[data-modal-close]");
 const programButtons = document.querySelectorAll("[data-program]");
-const form = document.querySelector("[data-lead-form]");
-const formStatus = document.querySelector("[data-form-status]");
+const forms = document.querySelectorAll("[data-lead-form]");
 
 let modalOpener = null;
 let submissionComplete = false;
@@ -25,43 +22,7 @@ cookieClose?.addEventListener("click", () => {
   if (cookie) cookie.hidden = true;
 });
 
-function updateGalleryProgress() {
-  const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
-  const progress = maxScroll > 0 ? galleryTrack.scrollLeft / maxScroll : 0;
-  galleryProgress.style.transform = `translateX(${progress * 316}%)`;
-}
-
-let isDraggingGallery = false;
-let galleryStartX = 0;
-let galleryStartScroll = 0;
-
-galleryTrack.addEventListener("scroll", updateGalleryProgress, { passive: true });
-window.addEventListener("resize", updateGalleryProgress);
-
-galleryTrack.addEventListener("pointerdown", (event) => {
-  isDraggingGallery = true;
-  event.preventDefault();
-  galleryStartX = event.clientX;
-  galleryStartScroll = galleryTrack.scrollLeft;
-  galleryTrack.setPointerCapture(event.pointerId);
-});
-
-galleryTrack.addEventListener("pointermove", (event) => {
-  if (!isDraggingGallery) return;
-  galleryTrack.scrollLeft = galleryStartScroll - (event.clientX - galleryStartX);
-});
-
-galleryTrack.addEventListener("pointerup", () => {
-  isDraggingGallery = false;
-});
-
-galleryTrack.addEventListener("pointercancel", () => {
-  isDraggingGallery = false;
-});
-
-updateGalleryProgress();
-
-function clearErrors() {
+function clearErrors(form) {
   form.querySelectorAll("[data-error]").forEach((element) => {
     element.textContent = "";
   });
@@ -70,7 +31,8 @@ function clearErrors() {
   });
 }
 
-function setStatus(message = "", state = "") {
+function setStatus(form, message = "", state = "") {
+  const formStatus = form.querySelector("[data-form-status]");
   formStatus.textContent = message;
   if (state) formStatus.dataset.state = state;
   else formStatus.removeAttribute("data-state");
@@ -85,11 +47,12 @@ programButtons.forEach((button) => {
   button.addEventListener("click", () => {
     modalOpener = button;
     submissionComplete = false;
-    form.elements.program.value = button.dataset.program;
-    clearErrors();
-    setStatus(`Вы выбрали: ${button.dataset.program}`);
+    const modalForm = modal.querySelector("[data-lead-form]");
+    modalForm.elements.program.value = button.dataset.program;
+    clearErrors(modalForm);
+    setStatus(modalForm, `Вы выбрали: ${button.dataset.program}`);
     modal.showModal();
-    form.elements.name.focus();
+    modalForm.elements.name.focus();
   });
 });
 
@@ -103,55 +66,58 @@ modal.addEventListener("close", () => {
   modalOpener?.focus();
 });
 
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  if (submissionComplete) return;
+forms.forEach((form) => {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (submissionComplete) return;
 
-  clearErrors();
-  const payload = Object.fromEntries(new FormData(form));
-  const errors = validateLead(payload);
+    clearErrors(form);
+    const payload = Object.fromEntries(new FormData(form));
+    const errors = validateLead(payload);
 
-  if (Object.keys(errors).length) {
-    Object.entries(errors).forEach(([field, message]) => {
-      const error = form.querySelector(`[data-error="${field}"]`);
-      const input = form.elements[field];
-      error.textContent = message;
-      input?.setAttribute("aria-invalid", "true");
-    });
-    form.elements[Object.keys(errors)[0]]?.focus();
-    setStatus("Проверьте заполнение формы.", "error");
-    return;
-  }
-
-  const submit = form.querySelector("button[type='submit']");
-  submit.disabled = true;
-  submit.textContent = "Отправляем…";
-  setStatus("Отправляем заявку…");
-
-  try {
-    if (!isStaticDemoHost) {
-      const response = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
+    if (Object.keys(errors).length) {
+      Object.entries(errors).forEach(([field, message]) => {
+        const error = form.querySelector(`[data-error="${field}"]`);
+        const input = form.elements[field];
+        error.textContent = message;
+        input?.setAttribute("aria-invalid", "true");
       });
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.error || "Не удалось отправить заявку");
-      }
+      form.elements[Object.keys(errors)[0]]?.focus();
+      setStatus(form, "Проверьте заполнение формы.", "error");
+      return;
     }
 
-    submissionComplete = true;
-    form.reset();
-    submit.textContent = "Заявка отправлена";
-    setStatus("Спасибо! Заявка отправлена.", "success");
-  } catch {
-    submit.disabled = false;
-    submit.textContent = "Отправить заявку";
-    setStatus(
-      "Не получилось отправить. Проверьте соединение и попробуйте ещё раз.",
-      "error",
-    );
-  }
+    const submit = form.querySelector("button[type='submit']");
+    submit.disabled = true;
+    submit.textContent = "Отправляем…";
+    setStatus(form, "Отправляем заявку…");
+
+    try {
+      if (!isStaticDemoHost) {
+        const response = await fetch("/api/lead", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(result.error || "Не удалось отправить заявку");
+        }
+      }
+
+      submissionComplete = true;
+      form.reset();
+      submit.textContent = "Заявка отправлена";
+      setStatus(form, "Спасибо! Заявка отправлена.", "success");
+    } catch {
+      submit.disabled = false;
+      submit.textContent = "Отправить заявку";
+      setStatus(
+        form,
+        "Не получилось отправить. Проверьте соединение и попробуйте ещё раз.",
+        "error",
+      );
+    }
+  });
 });

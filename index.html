@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     >
-    <link rel="stylesheet" href="styles.css?v=trainer960">
+    <link rel="stylesheet" href="styles.css?v=three-screens">
   </head>
   <body>
     <main>
@@ -36,47 +36,6 @@
           </div>
           <div class="hero__visual" aria-hidden="true">
             <img src="assets/hero-kate.png" alt="">
-          </div>
-        </div>
-      </section>
-
-      <section class="trainer" aria-labelledby="trainer-title">
-        <div class="section-shell trainer__inner">
-          <header class="section-heading">
-            <h2 id="trainer-title">
-              Доверьте свое тело чемпионке<br>
-              фитнес-бикини и тренеру <span>Кате Усмановой</span>
-            </h2>
-            <p>
-              С 2015 года создаёт топовые тренировки для идеальных ягодиц,
-              плоского живота и стройности без жёстких диет.<br>
-              Уже более 580 000+ участниц тренируются с Катей, ведь она:
-            </p>
-          </header>
-
-          <div class="trainer-card">
-            <ul class="trainer__facts">
-              <li>Вице-чемпионка мира и чемпионка России по фитнес-бикини</li>
-              <li>Профессиональный фитнес-тренер с опытом более 15 лет</li>
-              <li>Мама 2-х детей. Всего за 100 дней после первых родов похудела на 20 кг</li>
-              <li>Автор первых в России масштабных марафонов стройности</li>
-              <li>Чемпионка России и мира по жиму лёжа</li>
-            </ul>
-
-            <div class="gallery" aria-label="Фотографии Кати Усмановой">
-              <div class="gallery__track" data-gallery-track tabindex="0">
-                <figure class="gallery__slide">
-                  <img src="assets/trainer-gym.png" alt="Катя Усманова в спортивном зале" draggable="false">
-                </figure>
-                <figure class="gallery__slide">
-                  <img src="assets/trainer-beach.png" alt="Катя Усманова на отдыхе" draggable="false">
-                </figure>
-              </div>
-              <div class="gallery__progress" aria-hidden="true">
-                <span data-gallery-progress></span>
-              </div>
-            </div>
-            <p class="gallery__hint">Листайте вправо <span>→</span></p>
           </div>
         </div>
       </section>
@@ -128,6 +87,43 @@
           </div>
         </div>
       </section>
+
+      <section class="lead-screen" id="form" aria-labelledby="lead-title">
+        <div class="section-shell lead-screen__inner">
+          <div class="lead-screen__copy">
+            <p class="eyebrow">Начните сегодня</p>
+            <h2 id="lead-title">Оставьте заявку на программу</h2>
+            <p>
+              Выберите цель, оставьте контакт, и мы свяжемся с вами, чтобы помочь
+              подобрать подходящий старт.
+            </p>
+          </div>
+          <form class="lead-card" data-lead-form novalidate>
+            <label>
+              <span>Ваше имя</span>
+              <input name="name" autocomplete="name" placeholder="Например, Юлия" required>
+              <small data-error="name"></small>
+            </label>
+            <label>
+              <span>Телефон или Telegram</span>
+              <input name="contact" autocomplete="tel" placeholder="+7 или @username" required>
+              <small data-error="contact"></small>
+            </label>
+            <label>
+              <span>Программа</span>
+              <select name="program" required>
+                <option value="">Выберите программу</option>
+                <option>Стройности</option>
+                <option>Упругая попа 1.0</option>
+                <option>Упругая попа 2.0</option>
+              </select>
+              <small data-error="program"></small>
+            </label>
+            <button class="button" type="submit">Отправить заявку</button>
+            <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+          </form>
+        </div>
+      </section>
     </main>
 
     <dialog class="lead-modal" data-modal aria-labelledby="modal-title">
@@ -155,6 +151,6 @@
       </form>
     </dialog>
 
-    <script type="module" src="js/app.js?v=trainer960"></script>
+    <script type="module" src="js/app.js?v=three-screens"></script>
   </body>
 </html>
