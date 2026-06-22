@@ -175,7 +175,7 @@ input:focus-visible {
 }
 
 .trainer__inner {
-  width: min(660px, calc(100% - 40px));
+  width: min(1120px, calc(100% - 40px));
 }
 
 .section-heading {
@@ -202,33 +202,35 @@ input:focus-visible {
 }
 
 .trainer-card {
-  padding: 20px 20px 16px;
-  border-radius: 30px;
+  padding: 34px 34px 26px;
+  border-radius: 48px;
   background: var(--white);
   box-shadow: 0 10px 30px rgb(0 0 0 / 4%);
 }
 
 .trainer__facts {
   display: grid;
-  margin: 0 0 24px;
+  margin: 0 0 34px;
   padding: 0;
-  gap: 15px;
+  gap: 24px;
   list-style: none;
 }
 
 .trainer__facts li {
   position: relative;
   min-height: 30px;
-  padding-left: 43px;
-  font-size: 16px;
+  padding-left: 70px;
+  font-size: clamp(22px, 2.35vw, 31px);
+  font-weight: 400;
+  line-height: 1.35;
 }
 
 .trainer__facts li::before {
   position: absolute;
-  top: -2px;
+  top: 3px;
   left: 0;
-  width: 30px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
   content: "";
   background: linear-gradient(135deg, transparent 26%, var(--pink) 27% 43%, transparent 44% 55%, var(--pink) 56% 72%, transparent 73%);
   transform: rotate(-8deg);
@@ -237,16 +239,24 @@ input:focus-visible {
 .gallery {
   position: relative;
   overflow: hidden;
-  border-radius: 28px;
+  padding-bottom: 30px;
+  border-radius: 36px 36px 0 0;
 }
 
 .gallery__track {
   display: flex;
+  gap: 38px;
   overflow-x: auto;
+  cursor: grab;
   overscroll-behavior-x: contain;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: auto;
+  scroll-snap-type: x proximity;
+  user-select: none;
   scrollbar-width: none;
+}
+
+.gallery__track:active {
+  cursor: grabbing;
 }
 
 .gallery__track::-webkit-scrollbar {
@@ -254,12 +264,11 @@ input:focus-visible {
 }
 
 .gallery__slide {
-  min-width: 100%;
-  height: 430px;
+  flex: 0 0 52.5%;
+  height: 510px;
   margin: 0;
   overflow: hidden;
-  border: 5px solid #f7f7f7;
-  border-radius: 28px;
+  border-radius: 34px;
   background: #eee;
   scroll-snap-align: start;
 }
@@ -271,27 +280,22 @@ input:focus-visible {
   object-position: center;
 }
 
-.gallery__controls {
-  position: absolute;
-  right: 18px;
-  bottom: 18px;
-  display: flex;
-  gap: 9px;
+.gallery__progress {
+  width: 180px;
+  height: 10px;
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f3f3f3;
 }
 
-.gallery__controls button {
-  display: grid;
-  width: 42px;
-  height: 42px;
-  border: 0;
-  border-radius: 50%;
-  color: var(--white);
+.gallery__progress span {
+  display: block;
+  width: 38%;
+  height: 100%;
+  border-radius: inherit;
   background: var(--pink);
-  box-shadow: 0 8px 18px rgb(246 95 150 / 30%);
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-  place-items: center;
+  transform-origin: left center;
 }
 
 .gallery__hint {
@@ -638,17 +642,24 @@ input:focus-visible {
   }
 
   .trainer-card {
-    padding: 16px;
-    border-radius: 24px;
+    padding: 20px 16px 24px;
+    border-radius: 32px;
   }
 
   .trainer__facts li {
-    padding-left: 36px;
-    font-size: 14px;
+    padding-left: 42px;
+    font-size: 18px;
+  }
+
+  .trainer__facts li::before {
+    width: 28px;
+    height: 28px;
   }
 
   .gallery__slide {
-    height: 360px;
+    flex-basis: 86%;
+    height: 340px;
+    border-radius: 26px;
   }
 
   .gallery__hint {

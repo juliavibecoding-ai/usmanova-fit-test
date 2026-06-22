@@ -3,8 +3,7 @@ import { validateLead } from "./validation.js";
 const cookie = document.querySelector("[data-cookie]");
 const cookieClose = document.querySelector("[data-cookie-close]");
 const galleryTrack = document.querySelector("[data-gallery-track]");
-const galleryPrev = document.querySelector("[data-gallery-prev]");
-const galleryNext = document.querySelector("[data-gallery-next]");
+const galleryProgress = document.querySelector("[data-gallery-progress]");
 const modal = document.querySelector("[data-modal]");
 const modalClose = document.querySelector("[data-modal-close]");
 const programButtons = document.querySelectorAll("[data-program]");
@@ -26,15 +25,40 @@ cookieClose.addEventListener("click", () => {
   cookie.hidden = true;
 });
 
-function scrollGallery(direction) {
-  galleryTrack.scrollBy({
-    left: galleryTrack.clientWidth * direction,
-    behavior: "smooth",
-  });
+function updateGalleryProgress() {
+  const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+  const progress = maxScroll > 0 ? galleryTrack.scrollLeft / maxScroll : 0;
+  galleryProgress.style.transform = `scaleX(${0.38 + progress * 0.62})`;
 }
 
-galleryPrev.addEventListener("click", () => scrollGallery(-1));
-galleryNext.addEventListener("click", () => scrollGallery(1));
+let isDraggingGallery = false;
+let galleryStartX = 0;
+let galleryStartScroll = 0;
+
+galleryTrack.addEventListener("scroll", updateGalleryProgress, { passive: true });
+window.addEventListener("resize", updateGalleryProgress);
+
+galleryTrack.addEventListener("pointerdown", (event) => {
+  isDraggingGallery = true;
+  galleryStartX = event.clientX;
+  galleryStartScroll = galleryTrack.scrollLeft;
+  galleryTrack.setPointerCapture(event.pointerId);
+});
+
+galleryTrack.addEventListener("pointermove", (event) => {
+  if (!isDraggingGallery) return;
+  galleryTrack.scrollLeft = galleryStartScroll - (event.clientX - galleryStartX);
+});
+
+galleryTrack.addEventListener("pointerup", () => {
+  isDraggingGallery = false;
+});
+
+galleryTrack.addEventListener("pointercancel", () => {
+  isDraggingGallery = false;
+});
+
+updateGalleryProgress();
 
 function clearErrors() {
   form.querySelectorAll("[data-error]").forEach((element) => {
