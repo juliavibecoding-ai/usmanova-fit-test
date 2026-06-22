@@ -35,12 +35,8 @@ try {
   }
 
   Write-Host "== Configure origin =="
-  git remote get-url origin *> $null
-  if ($LASTEXITCODE -eq 0) {
-    git remote set-url origin $repoUrl
-  } else {
-    git remote add origin $repoUrl
-  }
+  git remote remove origin 2>$null
+  git remote add origin $repoUrl
 
   Write-Host "== Push to main =="
   git push -u origin HEAD:main
