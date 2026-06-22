@@ -8,6 +8,12 @@
       content="Тестовая адаптивная копия трёх экранов лендинга Кати Усмановой"
     >
     <title>Фитнес с Катей Усмановой</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    >
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -57,30 +63,18 @@
               <li>Чемпионка России и мира по жиму лёжа</li>
             </ul>
 
-            <div class="gallery" data-gallery>
-              <div class="gallery__frame">
-                <img
-                  src="assets/trainer-gym.png"
-                  alt="Катя Усманова в спортивном зале"
-                  data-gallery-image
-                >
+            <div class="gallery" aria-label="Фотографии Кати Усмановой">
+              <div class="gallery__track" data-gallery-track tabindex="0">
+                <figure class="gallery__slide">
+                  <img src="assets/trainer-gym.png" alt="Катя Усманова в спортивном зале">
+                </figure>
+                <figure class="gallery__slide">
+                  <img src="assets/trainer-beach.png" alt="Катя Усманова на отдыхе">
+                </figure>
               </div>
-              <div class="gallery__thumbs" aria-label="Переключить фотографию">
-                <button
-                  type="button"
-                  data-gallery-src="assets/trainer-gym.png"
-                  data-gallery-alt="Катя Усманова в спортивном зале"
-                  aria-current="true"
-                >
-                  <img src="assets/trainer-gym.png" alt="Фото в зале">
-                </button>
-                <button
-                  type="button"
-                  data-gallery-src="assets/trainer-beach.png"
-                  data-gallery-alt="Катя Усманова на отдыхе"
-                >
-                  <img src="assets/trainer-beach.png" alt="Фото на отдыхе">
-                </button>
+              <div class="gallery__controls" aria-label="Навигация по фотографиям">
+                <button type="button" data-gallery-prev aria-label="Предыдущее фото">←</button>
+                <button type="button" data-gallery-next aria-label="Следующее фото">→</button>
               </div>
             </div>
             <p class="gallery__hint">Листайте вправо <span>→</span></p>

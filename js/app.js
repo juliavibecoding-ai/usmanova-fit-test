@@ -2,8 +2,9 @@ import { validateLead } from "./validation.js";
 
 const cookie = document.querySelector("[data-cookie]");
 const cookieClose = document.querySelector("[data-cookie-close]");
-const galleryImage = document.querySelector("[data-gallery-image]");
-const galleryButtons = document.querySelectorAll("[data-gallery-src]");
+const galleryTrack = document.querySelector("[data-gallery-track]");
+const galleryPrev = document.querySelector("[data-gallery-prev]");
+const galleryNext = document.querySelector("[data-gallery-next]");
 const modal = document.querySelector("[data-modal]");
 const modalClose = document.querySelector("[data-modal-close]");
 const programButtons = document.querySelectorAll("[data-program]");
@@ -25,14 +26,15 @@ cookieClose.addEventListener("click", () => {
   cookie.hidden = true;
 });
 
-galleryButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    galleryImage.src = button.dataset.gallerySrc;
-    galleryImage.alt = button.dataset.galleryAlt;
-    galleryButtons.forEach((item) => item.removeAttribute("aria-current"));
-    button.setAttribute("aria-current", "true");
+function scrollGallery(direction) {
+  galleryTrack.scrollBy({
+    left: galleryTrack.clientWidth * direction,
+    behavior: "smooth",
   });
-});
+}
+
+galleryPrev.addEventListener("click", () => scrollGallery(-1));
+galleryNext.addEventListener("click", () => scrollGallery(1));
 
 function clearErrors() {
   form.querySelectorAll("[data-error]").forEach((element) => {
