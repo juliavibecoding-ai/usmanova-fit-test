@@ -29,11 +29,9 @@ try {
   }
 
   Write-Host "== Create or reuse GitHub repository =="
-  gh repo view $repo --json name *> $null
+  gh repo create $repo --public --description "Тестовое задание: копия трёх экранов лендинга Usmanova Fit" --confirm
   if ($LASTEXITCODE -ne 0) {
-    gh repo create $repo --public --description "Тестовое задание: копия трёх экранов лендинга Usmanova Fit"
-  } else {
-    Write-Host "Repository already exists: $repo"
+    Write-Host "Repository may already exist or creation failed. Continuing to remote setup..."
   }
 
   Write-Host "== Configure origin =="
