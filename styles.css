@@ -177,6 +177,10 @@ input:focus-visible {
   max-width: none;
 }
 
+.hero__mobile-visual {
+  display: none;
+}
+
 @media (min-width: 1600px) {
   .hero__visual img {
     transform: translateY(-315px);
@@ -793,45 +797,60 @@ input:focus-visible {
   .section-shell,
   .hero__inner,
   .trainer__inner {
-    width: calc(100% - 32px);
+    width: calc(100% - 24px);
   }
 
   .hero__copy {
-    padding-top: 42px;
+    padding: 28px 0 42px;
   }
 
   .hero h1 {
-    font-size: 32px;
+    max-width: 370px;
+    margin: 0 auto 22px;
+    font-size: 26px;
+    line-height: 1.13;
+    letter-spacing: -0.02em;
   }
 
   .hero__subtitle {
-    font-size: 21px;
+    margin-bottom: 22px;
+    font-size: 22px;
+    line-height: 1.28;
   }
 
   .hero__text {
-    font-size: 16px;
-    margin-bottom: 32px;
+    max-width: 340px;
+    margin-bottom: 26px;
+    font-size: 18px;
+    line-height: 1.35;
   }
 
   .button--hero {
     width: 100%;
     min-width: 0;
-    min-height: 62px;
-    font-size: 14px;
+    min-height: 74px;
+    font-size: 17px;
   }
 
   .hero__note {
-    font-size: 12px;
+    margin-top: 12px;
+    font-size: 14px;
   }
 
   .hero__visual {
-    height: 96vw;
-    max-height: 500px;
+    display: none;
   }
 
-  .hero__visual img {
-    bottom: -6px;
-    width: 116vw;
+  .hero__mobile-visual {
+    display: block;
+    width: min(500px, 104vw);
+    margin: 0 50% 22px;
+    transform: translateX(-50%);
+  }
+
+  .hero__mobile-visual img {
+    width: 100%;
+    max-width: none;
   }
 
   .trainer,
