@@ -12,6 +12,9 @@ const formStatus = document.querySelector("[data-form-status]");
 
 let modalOpener = null;
 let submissionComplete = false;
+const isStaticDemoHost = ["github.io", "localhost", "127.0.0.1"].some((host) =>
+  window.location.hostname.includes(host),
+);
 
 if (localStorage.getItem("usmanovaCookieAccepted") === "1") {
   cookie.hidden = true;
@@ -99,15 +102,17 @@ form.addEventListener("submit", async (event) => {
   setStatus("Отправляем заявку…");
 
   try {
-    const response = await fetch("/api/lead", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const result = await response.json().catch(() => ({}));
+    if (!isStaticDemoHost) {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json().catch(() => ({}));
 
-    if (!response.ok) {
-      throw new Error(result.error || "Не удалось отправить заявку");
+      if (!response.ok) {
+        throw new Error(result.error || "Не удалось отправить заявку");
+      }
     }
 
     submissionComplete = true;
